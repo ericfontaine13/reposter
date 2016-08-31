@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>My best Tweets</h1>
+  <p><%= link_to "no filter", twits_path %> - <%= link_to "filter by like", twits_path(filter: "like") %> - <%= link_to "filter by retweet", twits_path(filter: "retweet") %></p>
+  <ul>
+    <% @twits.each do |twit| %>
+      <li>
+        <%= link_to twit.content, twit.link %> has <%= twit.like %> likes and <%= twit.retweet %> retweets
+      </li>
+    <% end %>
+  </ul>
+</div>
