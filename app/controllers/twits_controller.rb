@@ -1,10 +1,8 @@
 class TwitsController < ApplicationController
 
   def index
-    if params[:filter] == "like"
-      @twits = Twit.most_liked
-    elsif params[:filter] == "retweet"
-      @twits = Twit.most_retweeted
+    if params[:filter] && params[:order]
+      @twits = Twit.order_by(params[:filter], params[:order])
     else
       @twits = Twit.all
     end

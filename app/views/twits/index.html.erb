@@ -1,10 +1,15 @@
 <div class="container">
   <h1>My best Tweets</h1>
-  <p><%= link_to "no filter", twits_path %> - <%= link_to "filter by like", twits_path(filter: "like") %> - <%= link_to "filter by retweet", twits_path(filter: "retweet") %></p>
+  <p><%= link_to "no filter", twits_path %>
+    | <%= link_to "like by ASC", twits_path(filter: "like", order: "asc" ) %>
+    | <%= link_to "like by DESC", twits_path(filter: "like", order: "desc" ) %>
+    | <%= link_to "retweet by ASC", twits_path(filter: "retweet", order: "asc") %>
+    | <%= link_to "retweet by DESC", twits_path(filter: "retweet", order: "desc") %>
+  </p>
   <ul>
     <% @twits.each do |twit| %>
       <li>
-        <%= link_to twit.content, twit.link %> has <%= twit.like %> likes and <%= twit.retweet %> retweets
+        <%= link_to twit.link, twit.link %> | <%= twit.like %> likes | <%= twit.retweet %> retweets | on <%= twit.first_date %>
       </li>
     <% end %>
   </ul>
