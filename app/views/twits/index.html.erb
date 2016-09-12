@@ -6,11 +6,31 @@
     | <%= link_to "retweet by ASC", twits_path(filter: "retweet", order: "asc") %>
     | <%= link_to "retweet by DESC", twits_path(filter: "retweet", order: "desc") %>
   </p>
+  <p>
+
+   <%= form_tag twits_path, method: :get do %>
+   <%= select_tag :filter_by, options_for_select(["engagement", "like", "retweet"]),
+   class: "btn btn-primary dropdown-toggle" %>
+   between
+   <%= select_tag :start, options_for_select(0..10), class: "btn btn-primary dropdown-toggle" %>
+   and
+   <%= select_tag :end, options_for_select(0..10), class: "btn btn-primary dropdown-toggle" %>
+   <%= submit_tag "Filter", :name => nil, class: "btn btn-primary" %>
+   <% end %>
+
+
+  </p>
+
+
+
   <ul>
     <% @twits.each do |twit| %>
       <li>
-        <%= link_to twit.link, twit.link %> | <%= twit.like %> likes | <%= twit.retweet %> retweets | on <%= twit.first_date %>
+        <%= link_to twit.link, twit.link %> | Engagement => <%= twit.engagement %> | <%= twit.like %> likes | <%= twit.retweet %> retweets | on <%= twit.first_date %>
       </li>
     <% end %>
   </ul>
+
 </div>
+
+

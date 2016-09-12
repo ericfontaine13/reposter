@@ -1,10 +1,11 @@
 class TwitsController < ApplicationController
 
   def index
-    if params[:filter] && params[:order]
-      @twits = Twit.order_by(params[:filter], params[:order])
+    @twits = Twit.order(engagement: :desc)
+    if params[:filter_by].present? && params[:start].present? && params[:end].present?
+      @twits = Twit.filter(params[:filter_by]).where(params[:filter_by] => params[:start]..params[:end])
     else
-      @twits = Twit.all
+      @twits = Twit.order(engagement: :desc)
     end
   end
 
