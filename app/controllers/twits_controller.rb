@@ -1,12 +1,24 @@
 class TwitsController < ApplicationController
+  before_action :find_twit, only: [:show, :edit, :update, :destroy]
 
   def index
-    @twits = Twit.order(engagement: :desc)
-    if params[:filter_by].present? && params[:start].present? && params[:end].present?
-      @twits = Twit.filter(params[:filter_by]).where(params[:filter_by] => params[:start]..params[:end])
+    if params[:filter_by]
+      @twits = Twit.filter(params[:filter_by], params[:min], params[:max], params[:start_at], params[:end_at])
     else
-      @twits = Twit.order(engagement: :desc)
+      @twits = Twit.all.order("engagement DESC")
     end
+  end
+
+  def show
+  end
+
+  def destroy
+    @twit.destroy
+    redirect_to twits_path
+  end
+
+  def find_twit
+      @twit = Twit.find(params[:id])
   end
 
 end

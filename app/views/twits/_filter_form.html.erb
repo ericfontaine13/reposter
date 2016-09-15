@@ -1,0 +1,14 @@
+<%= link_to "Cancel filter", twits_path %>
+  <%= form_tag twits_path, method: :get do %>
+  <%= select_tag :filter_by, options_for_select(["engagement", "like", "retweet"]), :include_blank => true,
+  class: "btn dropdown-toggle" %>
+  between
+  <%= select_tag :min, options_for_select(0..20), :include_blank => true, class: "btn dropdown-toggle" %>
+  and
+  <%= select_tag :max, options_for_select(0..20), :include_blank => true, class: "btn dropdown-toggle" %>
+  start date
+  <%= text_field_tag :start_at %>
+  end date
+  <%= text_field_tag :end_at %> --
+  <%= submit_tag "Filter", name: nil, class: "btn btn-primary" %>
+<% end %>

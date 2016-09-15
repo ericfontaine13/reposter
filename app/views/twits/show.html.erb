@@ -1,0 +1,21 @@
+
+    <h1><%= @twit.link %></h1>
+    <p>
+
+      <span class="label label-info">
+        <%= @twit.content %>
+      </span>
+      <ul>
+        <li>
+        Engagement => <%= @twit.engagement %>
+        </li>
+        <li>
+        Like => <%= @twit.like %>
+        </li><li>
+        Retweet => <%= @twit.retweet %>
+        </li><li>
+        First tweeted on <%= @twit.first_date %>
+        </li>
+      </ul>
+
+    </p>

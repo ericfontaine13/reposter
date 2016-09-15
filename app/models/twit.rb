@@ -14,15 +14,12 @@ class Twit < ApplicationRecord
     end
   end
 
-
-
-  def self.filter(filter)
-    order("#{filter}": :desc)
+  def self.filter(type = nil, min = nil, max = nil, start_at = nil, end_at = nil)
+    a = Twit.all
+    a = a.order("#{type}": :desc) if type.present?
+    a = a.where(type => min..max) if min.present? && max.present?
+    a = a.where(first_date: start_at..end_at) if start_at.present? && end_at.present?
+    a
   end
-
-
-
-
-
 
 end
