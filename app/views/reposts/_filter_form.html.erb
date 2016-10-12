@@ -1,12 +1,6 @@
-<%= link_to "Cancel filter", twits_path %> | <%= link_to "Go to Reposts", reposts_path %>
+<%= link_to "Cancel filter", reposts_path %> | <%= link_to "Go to Twits", twits_path %><br>
 
-<%= form_tag twits_path do %>
-Enter your Twitter User <%= text_field_tag :twitter_user %>
-  <%= submit_tag "GO" %>
-<% end %><br>
-
-
-<%= form_tag twits_path, method: :get do %>
+<%= form_tag reposts_path, method: :get do %>
   <%= select_tag :filter_by, options_for_select(["engagement", "like", "retweet"]), :include_blank => true,
   class: "btn dropdown-toggle" %>
   between

@@ -10,20 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912144108) do
+ActiveRecord::Schema.define(version: 20161011151817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reposts", force: :cascade do |t|
+    t.string   "content"
+    t.string   "link"
+    t.integer  "like"
+    t.integer  "retweet"
+    t.integer  "engagement"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "content_url"
+    t.string   "image_url"
+    t.datetime "first_date"
+  end
 
   create_table "twits", force: :cascade do |t|
     t.string   "content"
     t.string   "link"
     t.integer  "like"
     t.integer  "retweet"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.datetime "first_date"
     t.integer  "engagement"
+    t.string   "image_url"
+    t.string   "content_url"
   end
 
 end

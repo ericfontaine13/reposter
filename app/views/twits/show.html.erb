@@ -2,7 +2,7 @@
     <h1><%= @twit.link %></h1>
     <p>
 
-      <span class="label label-info">
+      <span class="label label-primary">
         <%= @twit.content %>
       </span>
       <ul>
@@ -17,5 +17,5 @@
         First tweeted on <%= @twit.first_date %>
         </li>
       </ul>
-
+      <%= link_to "Back to top tweets", twits_path %>
     </p>

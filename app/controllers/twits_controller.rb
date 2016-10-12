@@ -9,6 +9,11 @@ class TwitsController < ApplicationController
     end
   end
 
+  def create
+    Twit.get_tweets(params[:twitter_user])
+    redirect_to twits_path
+  end
+
   def show
   end
 
@@ -18,7 +23,7 @@ class TwitsController < ApplicationController
   end
 
   def find_twit
-      @twit = Twit.find(params[:id])
+    @twit = Twit.find(params[:id])
   end
 
 end

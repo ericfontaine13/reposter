@@ -1,0 +1,19 @@
+<h1><%= @repost.link %></h1>
+    <p>
+
+      <span class="label label-primary">
+        <%= @repost.content %>
+      </span>
+      <ul>
+        <li>
+        Engagement => <%= @repost.engagement %>
+        </li>
+        <li>
+        Like => <%= @repost.like %>
+        </li>
+        <li>
+        Retweet => <%= @repost.retweet %>
+        </li>
+      </ul>
+      <%= link_to "Back to Reposts", reposts_path %>
+    </p>
