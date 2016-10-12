@@ -1,19 +1,8 @@
-<div style="background-image: url('<%= image_tag ("bg-homepage.jpg") %>')">
-  <div>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "bg-homepage.jpg" %>');">
+  <div class="banner-content">
     <h1>Reposter</h1>
-  </div>
-</div>
-
-<div class="container padded">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4">
-
-    </div>
-    <div class="col-xs-12 col-sm-4">
-
-    </div>
-    <div class="col-xs-12 col-sm-4">
-
-    </div>
+    <h2>Repost your best Tweets. The smart way.</h2><br>
+    <p><%= link_to "Your twits", twits_path, class: "btn btn-primary btn-sm" %> |
+    <%= link_to "Your reposts", reposts_path, class: "btn btn-info btn-sm" %></p>
   </div>
 </div>
