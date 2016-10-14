@@ -1,7 +1,7 @@
 .twit {
   display: flex;
   align-items: center;
-  padding: 50px;
+  padding: 30px;
   border-radius: 3px;
   transition: all 0.15s ease;
 }
@@ -17,7 +17,6 @@
 .twit-image {
   border-radius: 10px;
   margin-right: 20px;
-  margin-bottom: 6px;
   border: 1px solid #dedede;
   object-fit: cover;
   height: 175px;
@@ -34,17 +33,39 @@
   margin-top: 0;
 }
 
-.twit-body p {
-  font-weight: lighter;
-  color: black;
-  margin-bottom: 10px;
+.twit-body h5 {
+  font-family: arial;
+  font-size: 15px;
+  color: #414142;
+}
 
+.twit-body h6 {
+  font-size: 14px;
+  color: #aab8c2;
+  font-family: arial;
+}
+
+.twit-body p {
+  color: #aab8c2;
+  margin-bottom: 6px;
+  font-family: "arial";
+  font-style: italic;
+  font-size: 13px;
 }
 
 .twit:hover {
   background: #f7f7fa;
+  padding: 30px;
+  border-radius: 10px;
 }
 
+.fa.fa-heart.fa {
+  color: #aab8c2;
+}
+
+.fa.fa-retweet.fa {
+   color: #aab8c2;
+}
 
 .checkbox-hidden {
   visibility: hidden;
