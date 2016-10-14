@@ -9,7 +9,8 @@
           <div class="repost-body">
             <h3><%= repost.content %></h3>
             <h5>Engagement => <%= repost.engagement %><h5>
-            <p><%= repost.like %> Like + <%= repost.retweet %> Retweet</p>
+            <h6><i class="fa fa-retweet fa" aria-hidden="true"></i> <%= repost.retweet %>&nbsp;&nbsp;
+            <i class="fa fa-heart fa" aria-hidden="true"></i> <%= repost.like %></h6>
             <p>first tweeted on <%= (repost.first_date).strftime("%A, %B %d, %Y") %></p>
             <%= link_to "Delete", repost_path(repost), name: nil, class: "btn btn-danger btn-sm", method: :delete, data: {:confirm => 'Are you sure?'} %>
             <%= link_to "Edit your schedule", repost_path(repost), name: nil, class: "btn btn-primary btn-sm" %>
