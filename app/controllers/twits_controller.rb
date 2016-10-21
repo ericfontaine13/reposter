@@ -3,7 +3,7 @@ class TwitsController < ApplicationController
 
   def index
     if params[:filter_by]
-      @twits = Twit.filter(params[:filter_by], params[:min], params[:max], params[:start_at], params[:end_at])
+      @twits = Twit.filter(params[:filter_by], params[:min], params[:max], params[:start_at], params[:end_at], params[:media])
     else
       @twits = Twit.all.order("engagement DESC")
     end

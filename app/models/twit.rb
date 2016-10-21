@@ -2,27 +2,44 @@
 class Twit < ApplicationRecord
 
   def self.get_tweets user
-    all_tweets = TWITTER.user_timeline(user, count: "20", exclude_replies: true, include_rts: false)
+    all_tweets = TWITTER.user_timeline(user, count: "50", exclude_replies: true, include_rts: false)
     good_tweets = all_tweets.select{ |t| t.retweet_count + t.favorite_count > 0 }
     good_tweets.each do |tweet|
       Twit.find_or_create_by(link: "#{tweet.uri}") do |twit|
-        twit.content = tweet.text.split("https")[0]
+        twit.content = tweet.text.gsub(/(https?):\/\/\w+.\w+\/?\w+/, "")
         twit.like = tweet.favorite_count
         twit.retweet = tweet.retweet_count
         twit.first_date = tweet.created_at
         twit.engagement = twit.like + twit.retweet
-        twit.image_url = tweet.media[0].media_url
-        twit.content_url = tweet.urls[0].expanded_url.to_s.split("?")[0] if tweet.urls[0].present?
+        if tweet.media[0].present?
+          twit.image_url = tweet.media[0].media_url
+        else
+          twit.image_url = "http://www.missionentrepreneur.org/wp-content/themes/openmind/img/no_image.png"
+        end
+        if tweet.urls[0].present?
+          twit.content_url = tweet.urls[0].expanded_url.to_s.split("?")[0]
+        else
+          twit.content_url = nil
+        end
+        if tweet.media[0].class == Twitter::Media::Video
+          videos = tweet.media[0].video_info[:variants]
+          bitrate = videos.select{ |t| t.bitrate.present? }
+          twit.video_url = bitrate[0].url
+        else
+          twit.video_url = nil
+        end
       end
     end
   end
 
-  def self.filter(type = nil, min = nil, max = nil, start_at = nil, end_at = nil)
+  def self.filter(type = nil, min = nil, max = nil, start_at = nil, end_at = nil, media = nil)
     a = Twit.all
     a = a.order("#{type}": :desc) if type.present?
     a = a.where(type => min..max) if min.present? && max.present?
     a = a.where(first_date: start_at..end_at) if start_at.present? && end_at.present?
+    a = a.where.not("#{media}": nil) if media.present?
     a
+
   end
 
 end

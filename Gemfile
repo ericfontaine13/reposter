@@ -17,6 +17,7 @@ gem 'attachinary'
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 gem 'rmagick'
+gem 'whenever'
 
 gem 'sass-rails'
 gem 'jquery-rails'

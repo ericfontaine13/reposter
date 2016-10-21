@@ -11,6 +11,7 @@ class Repost < ApplicationRecord
         repost.content_url = twit.content_url #Voir Bitly
         repost.image_url = twit.image_url
         repost.first_date = twit.first_date
+        TWITTER.update_with_media("#{repost.content} #{repost.content_url}", open("#{repost.image_url}"))
       end
     #end
   end

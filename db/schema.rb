@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011151817) do
+ActiveRecord::Schema.define(version: 20161019102503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20161011151817) do
     t.integer  "engagement"
     t.string   "image_url"
     t.string   "content_url"
+    t.string   "video_url"
   end
 
 end

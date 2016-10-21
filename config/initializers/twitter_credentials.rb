@@ -1,6 +1,6 @@
 TWITTER = Twitter::REST::Client.new do |config|
-  config.consumer_key        = '6mqMEmg4mymPb2nl1A1lnCfy2'
-  config.consumer_secret     = 'KyoCgiGE0LNV3NUhYf9pPAM38hdjwxqBcYiMKGpHu3rZdn3DLB'
-  config.access_token        = '751419255535665152-RwnSOHacbmSgiS5hH6mtc0RjDTrTcqD'
-  config.access_token_secret = 'jjR9Kedm6CWh2zurfIgy3UnasOzm49elh1vUzwmh2iyEs'
+  config.consumer_key        = 'svneeK3RtDRDPmmyh7Eh551mr'
+  config.consumer_secret     = 'UieIkM4q7YN9dgbJdQgLotSk5mjR6txSvz1BkoKUJCgSA5GtJb'
+  config.access_token        = '4288665260-n6ycYUHJx5F1LCOHXNYaqDIADTurP4L4l9loo7E'
+  config.access_token_secret = 'gAcLMFSMygvbAMUknWXFAMnomLbnono6XulvebZeUut8z'
 end
