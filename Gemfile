@@ -18,6 +18,7 @@ gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 gem 'rmagick'
 gem 'whenever'
+gem 'nokogiri'
 
 gem 'sass-rails'
 gem 'jquery-rails'

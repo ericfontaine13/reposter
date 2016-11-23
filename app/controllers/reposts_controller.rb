@@ -5,7 +5,7 @@ class RepostsController < ApplicationController
     if params[:filter_by]
       @reposts = Repost.filter(params[:filter_by], params[:min], params[:max], params[:start_at], params[:end_at])
     else
-      @reposts = Repost.all.order("engagement DESC")
+      @reposts = Repost.all.order("created_at DESC")
     end
   end
 

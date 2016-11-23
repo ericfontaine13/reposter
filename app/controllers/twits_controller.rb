@@ -5,7 +5,7 @@ class TwitsController < ApplicationController
     if params[:filter_by]
       @twits = Twit.filter(params[:filter_by], params[:min], params[:max], params[:start_at], params[:end_at], params[:media])
     else
-      @twits = Twit.all.order("engagement DESC")
+      @twits = Twit.all.order("first_date DESC")
     end
   end
 

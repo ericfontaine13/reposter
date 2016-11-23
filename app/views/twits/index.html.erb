@@ -9,7 +9,16 @@
         <div class="twit">
           <%= image_tag "#{twit.image_url}", class: "twit-image" %>
           <div class="twit-body">
-            <h3><%= twit.content %></h3>
+            <% if twit.content.present? %>
+              <h3><%= twit.content %></h3>
+            <% else %>
+              <%= "This tweet has no text" %>
+            <% end %>
+            <% if twit.content_url.present? %>
+              <%= link_to "#{twit.content_url}".truncate(70), twit.content_url, class: "twit-link" %>
+            <% else %>
+              <%= "This tweet has no link" %>
+            <% end %>
             <h5>Engagement => <%= twit.engagement %></h5>
             <h6><i class="fa fa-retweet fa" aria-hidden="true"></i> <%= twit.retweet %>&nbsp;&nbsp;
             <i class="fa fa-heart fa" aria-hidden="true"></i> <%= twit.like %></h6>

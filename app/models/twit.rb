@@ -2,10 +2,12 @@
 class Twit < ApplicationRecord
 
   def self.get_tweets user
-    all_tweets = TWITTER.user_timeline(user, count: "50", exclude_replies: true, include_rts: false)
-    good_tweets = all_tweets.select{ |t| t.retweet_count + t.favorite_count > 0 }
+    all_tweets = TWITTER.user_timeline(user, count: "20", exclude_replies: true, include_rts: false)
+    good_tweets = all_tweets.select{ |t| t.retweet_count + t.favorite_count > 0 &&
+      Nokogiri::HTML.parse(t.source.gsub("\"", "")).text != "Repostr" }
     good_tweets.each do |tweet|
       Twit.find_or_create_by(link: "#{tweet.uri}") do |twit|
+        twit.link = tweet.uri
         twit.content = tweet.text.gsub(/(https?):\/\/\w+.\w+\/?\w+/, "")
         twit.like = tweet.favorite_count
         twit.retweet = tweet.retweet_count
@@ -14,14 +16,14 @@ class Twit < ApplicationRecord
         if tweet.media[0].present?
           twit.image_url = tweet.media[0].media_url
         else
-          twit.image_url = "http://www.missionentrepreneur.org/wp-content/themes/openmind/img/no_image.png"
+          twit.image_url = "/assets/bg-homepage.jpg"
         end
         if tweet.urls[0].present?
           twit.content_url = tweet.urls[0].expanded_url.to_s.split("?")[0]
         else
           twit.content_url = nil
         end
-        if tweet.media[0].class == Twitter::Media::Video
+        if tweet.media[0].kind_of? Twitter::Media::Video
           videos = tweet.media[0].video_info[:variants]
           bitrate = videos.select{ |t| t.bitrate.present? }
           twit.video_url = bitrate[0].url

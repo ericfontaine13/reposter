@@ -19,8 +19,8 @@
   margin-right: 20px;
   border: 1px solid #dedede;
   object-fit: cover;
-  height: 175px;
-  width: 175px;
+  height: 200px;
+  width: 200px;
 }
 
 .twit-body {
@@ -29,7 +29,7 @@
 
 .twit-body h3 {
   font-weight: bold;
-  font-size: 23px;
+  font-size: 20px;
   margin-top: 0;
 }
 
@@ -51,6 +51,12 @@
   font-family: "arial";
   font-style: italic;
   font-size: 13px;
+}
+
+.twit-link {
+  color: #469AE0;
+  text-decoration: none;
+  font-size: 15px;
 }
 
 .twit:hover {

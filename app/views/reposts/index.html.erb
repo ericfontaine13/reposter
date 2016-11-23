@@ -9,6 +9,8 @@
           <div class="repost-body">
             <h3><%= repost.content %></h3>
             <h5>Engagement => <%= repost.engagement %><h5>
+            <h6><%= repost.content_url %></h6>
+            <h6>clicks => <%= repost.click %></h6>
             <h6><i class="fa fa-retweet fa" aria-hidden="true"></i> <%= repost.retweet %>&nbsp;&nbsp;
             <i class="fa fa-heart fa" aria-hidden="true"></i> <%= repost.like %></h6>
             <p>first tweeted on <%= (repost.first_date).strftime("%A, %B %d, %Y") %></p>
