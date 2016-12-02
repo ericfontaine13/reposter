@@ -1,21 +1,34 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h1 class="repost-h1">My Reposts</h1>
+      <h1 class="repost-h1">My Reposts library</h1>
       <p><%= render "filter_form" %></p>
       <p><% @reposts.each do |repost| %></p>
+        <p><%= form_tag publications_path do %></p>
+        <%= hidden_field_tag :repost_id , repost.id %>
         <div class="repost">
-          <img src="<%=repost.image_url %>" alt="repost.id" class="repost-image hidden-xs">
+          <%= image_tag "#{repost.image_url}", class: "twit-image" %>
           <div class="repost-body">
             <h3><%= repost.content %></h3>
-            <h5>Engagement => <%= repost.engagement %><h5>
-            <h6><%= repost.content_url %></h6>
-            <h6>clicks => <%= repost.click %></h6>
-            <h6><i class="fa fa-retweet fa" aria-hidden="true"></i> <%= repost.retweet %>&nbsp;&nbsp;
-            <i class="fa fa-heart fa" aria-hidden="true"></i> <%= repost.like %></h6>
-            <p>first tweeted on <%= (repost.first_date).strftime("%A, %B %d, %Y") %></p>
+            <% if repost.publications.count > 0 %>
+              <h6>This repost has been published <%= link_to "#{repost.publications.count} time(s)", repost_path(repost) %></h6>
+            <% else %>
+              <h6>This repost has been published 0 time</h6>
+            <% end %>
+            <h6>
+              <i class="fa fa-bullhorn fa" aria-hidden="true"></i> <%= repost.engagement %> (<%= repost.sum_engagement %>)</span>&nbsp;&nbsp;
+              <i class="fa fa-retweet fa" aria-hidden="true"></i> <%= repost.retweet %> (<%= repost.retweets_sum %>)&nbsp;&nbsp;
+              <i class="fa fa-heart fa" aria-hidden="true"></i> <%= repost.like %> (<%= repost.likes_sum %>)
+            </h6>
+            <h6><%= link_to "#{repost.content_url}", repost.content_url %> - total clicks => <%= repost.click %></h6>
+            <% if repost.publications.last.present? %>
+              <p>Last publication date <%= (repost.publications.last.created_at).strftime("%A, %B %d, %Y at %I:%M%p") %></p>
+            <% else %>
+              <p>This repost has not been published yet.</p>
+            <% end %>
             <%= link_to "Delete", repost_path(repost), name: nil, class: "btn btn-danger btn-sm", method: :delete, data: {:confirm => 'Are you sure?'} %>
-            <%= link_to "Edit your schedule", repost_path(repost), name: nil, class: "btn btn-primary btn-sm" %>
+            <%= submit_tag "Publish now", class: "btn btn-primary btn-sm" %>
+            <% end %>
           </div>
         </div>
       <% end %>

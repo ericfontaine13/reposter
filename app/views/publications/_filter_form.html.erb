@@ -1,4 +1,4 @@
-<%= link_to "Cancel filter", reposts_path %> | <%= link_to "Go to Twits", twits_path %> | <%= link_to "Go to Publications", publications_path %><br>
+<%= link_to "Go to Reposts", reposts_path %> | <%= link_to "Go to Twits", twits_path %><br>
 
 <%= form_tag reposts_path, method: :get do %>
   <%= select_tag :filter_by, options_for_select(["engagement", "like", "retweet"]), :include_blank => true,
