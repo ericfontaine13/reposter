@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202140316) do
+ActiveRecord::Schema.define(version: 20161208150229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20161202140316) do
     t.integer  "number_of_publications"
     t.integer  "likes_sum"
     t.integer  "retweets_sum"
-    t.integer  "sum_engagement"
+    t.integer  "engagement_sum"
   end
 
   create_table "twits", force: :cascade do |t|

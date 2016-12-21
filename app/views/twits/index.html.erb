@@ -15,7 +15,7 @@
               <%= "This tweet has no text" %>
             <% end %>
             <% if twit.content_url.present? %>
-              <%= link_to "#{twit.content_url}".truncate(70), twit.content_url, class: "twit-link" %>
+              <%= link_to "#{twit.content_url}".truncate(40), twit.content_url, class: "twit-link" %>
             <% else %>
               <%= "This tweet has no link" %>
             <% end %>
@@ -24,7 +24,7 @@
               <i class="fa fa-retweet fa" aria-hidden="true"></i> <%= twit.retweet %>&nbsp;&nbsp;
               <i class="fa fa-heart fa" aria-hidden="true"></i> <%= twit.like %>
             </h6>
-            <p>Tweeted on <%= (twit.first_date).strftime("%A, %B %d, %Y at %I:%M%p") %></p>
+            <p>Tweeted on <%= (twit.first_date).strftime("%A, %B %d, %Y at %I:%M%p %Z") %></p>
             <%= link_to "Delete", twit_path(twit), name: nil, class: "btn btn-danger btn-sm", method: :delete, data: {:confirm => 'Are you sure?'} %>
             <%= submit_tag "Add to your Reposts library", class: "btn btn-primary btn-sm" %>
             <% end %>

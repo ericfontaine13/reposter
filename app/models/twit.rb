@@ -2,8 +2,8 @@
 class Twit < ApplicationRecord
 
   def self.get_tweets user
-    all_tweets = TWITTER.user_timeline(user, count: "20", exclude_replies: true, include_rts: false)
-    good_tweets = all_tweets.select{ |t| t.retweet_count + t.favorite_count > 0 &&
+    all_tweets = TWITTER.user_timeline(user, count: "100", exclude_replies: true, include_rts: false)
+    good_tweets = all_tweets.select{ |t| t.retweet_count + t.favorite_count > 4 &&
       Nokogiri::HTML.parse(t.source.gsub("\"", "")).text != "Repostr" }
     good_tweets.each do |tweet|
       Twit.find_or_create_by(link: "#{tweet.uri}") do |twit|

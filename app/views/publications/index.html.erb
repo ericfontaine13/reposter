@@ -11,12 +11,13 @@
             <h6>
               <i class="fa fa-bullhorn fa" aria-hidden="true"></i> <%= publication.engagement %> &nbsp;&nbsp;
               <i class="fa fa-retweet fa" aria-hidden="true"></i> <%= publication.retweet %> &nbsp;&nbsp;
-              <i class="fa fa-heart fa" aria-hidden="true"></i> <%= publication.like %>
+              <i class="fa fa-heart fa" aria-hidden="true"></i> <%= publication.like %> &nbsp;&nbsp;
+              <i class="fa fa-bar-chart" aria-hidden="true"></i> <%= publication.click %>
             </h6>
-            <h6><%= link_to "#{publication.content_url}", publication.content_url %> - clicks => <%= publication.click %></h6>
-            <p>Published on <%= (publication.created_at).strftime("%A, %B %d, %Y at %I:%M%p") %></p>
-            <%= link_to "Delete", publication_path(publication), name: nil, class: "btn btn-danger btn-sm", method: :delete, data: {:confirm => 'Are you sure?'} %>
-            <%= link_to "Edit your schedule", publication_path(publication), name: nil, class: "btn btn-primary btn-sm" %>
+            <h6><%= link_to "#{publication.content_url}", publication.content_url %></h6>
+            <p>Published on <%= (publication.created_at).strftime("%A, %B %d, %Y at %I:%M%p %Z") %></p>
+            <%= link_to "Delete", repost_publications_url(publication), name: nil, class: "btn btn-danger btn-sm", method: :delete, data: {:confirm => 'Are you sure?'} %>
+            <%= link_to "Edit your schedule", repost_publications_url(publication), name: nil, class: "btn btn-primary btn-sm" %>
           </div>
         </div>
       <% end %>

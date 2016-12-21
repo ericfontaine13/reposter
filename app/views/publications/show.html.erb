@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1 class="twit-h1">My Publications</h1>
+      <p><%= render "filter_form" %></p>
+
+        <div class="twit">
+          <img src="<%=@publication.image_url %>" alt="publication.id" class="twit-image hidden-xs">
+          <div class="twit-body">
+            <h3><%= @publication.content %></h3>
+            <h6>
+              <i class="fa fa-bullhorn fa" aria-hidden="true"></i> <%= @publication.engagement %> &nbsp;&nbsp;
+              <i class="fa fa-retweet fa" aria-hidden="true"></i> <%= @publication.retweet %> &nbsp;&nbsp;
+              <i class="fa fa-heart fa" aria-hidden="true"></i> <%= @publication.like %>
+            </h6>
+            <h6><%= link_to "#{@publication.content_url}", @publication.content_url %> - clicks => <%= @publication.click %></h6>
+            <p>Published on <%= (@publication.created_at).strftime("%A, %B %d, %Y at %I:%M%p") %></p>
+            <%= link_to "Delete", repost_publications_url(@publication), name: nil, class: "btn btn-danger btn-sm", method: :delete, data: {:confirm => 'Are you sure?'} %>
+            <%= link_to "Edit your schedule", repost_publications_url(@publication), name: nil, class: "btn btn-primary btn-sm" %>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
