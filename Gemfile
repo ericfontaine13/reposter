@@ -19,6 +19,7 @@ gem 'coffee-rails'
 gem 'rmagick'
 gem 'whenever'
 gem 'nokogiri'
+gem 'montrose'
 
 gem 'sass-rails'
 gem 'jquery-rails'

@@ -21,7 +21,7 @@ class Publication < ApplicationRecord
   def self.shortener (url)
     # On raccourci la content_url pour chaque repost
     # Il faut une short_url unique pour tous les reposts d'un meme twit
-    short = `curl -X POST -d "url=#{url}" http://localhost:9393/`
+    short = `curl -X POST -d "url=#{url}" https://myshortenr.herokuapp.com/`
     JSON.load(short)
   end
 

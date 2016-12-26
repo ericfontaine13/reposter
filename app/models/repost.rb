@@ -152,7 +152,7 @@ class Repost < ApplicationRecord
 
   def get_new_clicks
     shortcode = publications.last.content_url.gsub("http://repo.st/", "")
-    clicks = `curl -X GET http://localhost:9393/tracking/#{shortcode}`
+    clicks = `curl -X GET https://myshortenr.herokuapp.com/tracking/#{shortcode}`
     new_clicks = JSON.load(clicks).to_i
     current_clicks = publications.last.click
     if new_clicks > current_clicks
