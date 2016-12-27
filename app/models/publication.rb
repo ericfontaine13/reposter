@@ -4,7 +4,11 @@ class Publication < ApplicationRecord
 
   def self.publish (reposts)
     repost = Repost.find_by_id(reposts)
-    repost.get_data
+    if repost.publications.empty?
+      nil
+    else
+      repost.get_data
+    end
     Publication.create do |publication|
       publication.repost_id = repost.id
       publication.content = repost.content
