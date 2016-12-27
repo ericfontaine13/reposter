@@ -3,18 +3,19 @@ class Publication < ApplicationRecord
   belongs_to :repost
 
   def self.publish (reposts)
-      repost = Repost.find_by_id(reposts)
-      Publication.create do |publication|
-        publication.repost_id = repost.id
-        publication.content = repost.content
-        publication.image_url = repost.image_url
-        publication.content_url = shortener(repost.content_url)
-        publication.click = 0
-        publication.like = 0
-        publication.retweet = 0
-        publication.engagement = 0
-        publication.link = TWITTER.update_with_media("#{repost.content}#{publication.content_url}", open("#{repost.image_url}")).uri
-      end
+    repost = Repost.find_by_id(reposts)
+    repost.get_data
+    Publication.create do |publication|
+      publication.repost_id = repost.id
+      publication.content = repost.content
+      publication.image_url = repost.image_url
+      publication.content_url = shortener(repost.content_url)
+      publication.click = 0
+      publication.like = 0
+      publication.retweet = 0
+      publication.engagement = 0
+      publication.link = TWITTER.update_with_media("#{repost.content}#{publication.content_url}", open("#{repost.image_url}")).uri
+    end
   end
 
 
