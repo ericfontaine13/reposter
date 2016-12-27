@@ -151,7 +151,7 @@ class Repost < ApplicationRecord
 ###### CLICKS INSTANCE METHOD ######
 
   def get_new_clicks
-    shortcode = publications.last.content_url.gsub("http://repo.st/", "")
+    shortcode = publications.last.content_url.gsub("https://myshortenr.herokuapp.com/", "")
     clicks = `curl -X GET https://myshortenr.herokuapp.com/tracking/#{shortcode}`
     new_clicks = JSON.load(clicks).to_i
     current_clicks = publications.last.click
