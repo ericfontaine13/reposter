@@ -22,6 +22,9 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'ice_cube'
+gem 'simple_calendar'
+gem 'recurring_select', github: "RundownApp/recurring_select"
+
 
 group :development, :test do
   gem 'binding_of_caller'

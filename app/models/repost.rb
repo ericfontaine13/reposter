@@ -1,6 +1,7 @@
 class Repost < ApplicationRecord
 
   has_many :publications
+  has_many :recurrences
 
   def self.create_repost (twits)
     twit = Twit.find_by_id(twits)

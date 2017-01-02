@@ -1,0 +1,8 @@
+class CreateRecurrences < ActiveRecord::Migration[5.0]
+  def change
+    create_table :recurrences do |t|
+
+      t.timestamps
+    end
+  end
+end

@@ -30,29 +30,4 @@ class RepostsController < ApplicationController
     @repost = Repost.find(params[:id])
   end
 
-  def get_likes
-    # Pour chaque tweet, on recupere le nombre de like du dernier repost
-    @reposts_with_publications = Repost.all.select { |t| t.publications.size > 0 }
-    @reposts_with_publications.each do |repost|
-      new_likes = TWITTER.status(repost.publications.last.link).favorite_count
-      current_likes = repost.publications.last.like
-      # calcul de la difference entre current_like et new_like
-      # pour gerer la possibilité de l'unlike (perte d'un like)
-        if new_likes > current_likes
-          more_likes = new_likes - current_likes
-          repost.publications.last.increment(:like, more_likes).save
-          repost.increment(:likes_sum, more_likes).save
-          repost.publications.last.increment(:engagement, more_likes).save
-          repost.increment(:engagement_sum, more_likes).save
-        else
-          less_likes = current_likes - new_likes
-          repost.publications.last.decrement(:like, less_likes).save
-          repost.decrement(:likes_sum, less_likes).save
-          repost.publications.last.decrement(:engagement, less_likes).save
-          repost.decrement(:engagement_sum, more_likes).save
-        end
-    end
-  end
-
-
 end
